@@ -1,13 +1,41 @@
 import pandas as pd
 from pandas._testing import assert_frame_equal
 
-from main import change_column_int_to_float
+from main import add_one_to_column
 
-def test_column_types():
+
+def test_dataframe_equal():
+    """パラメータなしで、厳密にチェックする=>DF内のデータ型が異なるのを許容しない
+    GIVEN: 3行2列のDataFrameを入力
+    WHEN: 指定したカラムをintからfloatにする
+    THEN: 指定したカラムがfloatになった同じshapeのDataFrameが返ってくる
+    """
+    # 入力を定義
     input_df = pd.DataFrame({'a': [1, 2, 3], 'b': [4, 5, 6]})
-    output_df = change_column_int_to_float(input_df, 'b')
-    print("\nOutput:", output_df)
-    expected = pd.DataFrame({'a': [1, 2, 3], 'b': [4, 5, 6]})
 
-    print("Expected:", expected)
-    assert_frame_equal(output_df, expected, check_dtype=False)
+    # テストする関数に入力
+    actual_df = add_one_to_column(input_df, 'b')
+    print("\nOutput:\n", actual_df)
+    expected = pd.DataFrame({'a': [1, 2, 3], 'b': [5, 6, 7]})
+
+    print("Expected:\n", expected)
+    # データ型をチェックするためエラーとなる
+    assert_frame_equal(actual_df, expected)
+
+
+def test_dataframe_without_dtype():
+    """データ型をチェックしない=>DF内のデータ型が異なっていても許容する
+    GIVEN: 3行2列のDataFrameを入力
+    WHEN: 指定したカラムをintからfloatにする
+    THEN: 指定したカラムがfloatになった同じshapeのDataFrameが返ってくる
+    """
+    # 入力を定義
+    input_df = pd.DataFrame({'a': [1, 2, 3], 'b': [4, 5, 6]})
+
+    # テストする関数に入力
+    actual_df = add_one_to_column(input_df, 'b')
+    print("\nOutput:\n", actual_df)
+    expected = pd.DataFrame({'a': [1, 2, 3], 'b': [5, 6, 7]})
+
+    print("Expected:\n", expected)
+    assert_frame_equal(actual_df, expected, check_dtype=False)
