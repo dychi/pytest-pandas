@@ -7,8 +7,8 @@ from main import add_one_to_column
 def test_dataframe_equal():
     """パラメータなしで、厳密にチェックする=>DF内のデータ型が異なるのを許容しない
     GIVEN: 3行2列のDataFrameを入力
-    WHEN: 指定したカラムをintからfloatにする
-    THEN: 指定したカラムがfloatになった同じshapeのDataFrameが返ってくる
+    WHEN: 指定したカラムの値に1を加える
+    THEN: 指定したカラムの値が1増えて同じshapeのDataFrameが返ってくる
     """
     # 入力を定義
     input_df = pd.DataFrame({'a': [1, 2, 3], 'b': [4, 5, 6]})
@@ -26,8 +26,8 @@ def test_dataframe_equal():
 def test_dataframe_without_dtype():
     """データ型をチェックしない=>DF内のデータ型が異なっていても許容する
     GIVEN: 3行2列のDataFrameを入力
-    WHEN: 指定したカラムをintからfloatにする
-    THEN: 指定したカラムがfloatになった同じshapeのDataFrameが返ってくる
+    WHEN: 指定したカラムの値に1を加える
+    THEN: 指定したカラムの値が1増えて同じshapeのDataFrameが返ってくる
     """
     # 入力を定義
     input_df = pd.DataFrame({'a': [1, 2, 3], 'b': [4, 5, 6]})

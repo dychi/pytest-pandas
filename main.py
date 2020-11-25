@@ -11,5 +11,5 @@ def add_one_to_column(frame: pd.DataFrame, col_name: str):
     Returns:
         frame (pd.DataFrame): 出力のDataFrame
     """
-    frame.loc[:, col_name] += 1.0
+    frame.loc[:, col_name] += 1
     return frame
